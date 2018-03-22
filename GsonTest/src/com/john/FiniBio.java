@@ -16,7 +16,7 @@ public class FiniBio {
 	public static void afficher() throws FileNotFoundException, UnsupportedEncodingException {
 		
 		for(int i = 0; i < Texte.etud.length; i++) {
-			PrintWriter writer = new PrintWriter("C:\\Users\\John\\Desktop\\TP\\ResultatsBio\\"+Texte.etud[i].code+".txt", "UTF-16");
+			PrintWriter writer = new PrintWriter("TP\\ResultatsBio\\"+Texte.etud[i].code+".txt", "UTF-16");
 			
 		//writer.println("");
 		writer.println(Texte.etud[i].nom + "," + Texte.etud[i].prenom + " - " + Texte.etud[i].code + "              date : " + simpleDateFormat.format(new Date()));

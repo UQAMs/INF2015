@@ -11,9 +11,9 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-		FolderReadListe.readFolderListe("C:\\Users\\John\\Desktop\\TP\\Liste");	
-		FolderReadBio.readFolderBio("C:\\Users\\John\\Desktop\\TP\\BIO1012");
-		FolderReadMat.readFolderMat("C:\\Users\\John\\Desktop\\TP\\MAT1411");
+		FolderReadListe.readFolderListe("TP\\Liste");	
+		FolderReadBio.readFolderBio("TP\\BIO1012");
+		FolderReadMat.readFolderMat("TP\\MAT1411");
 		Texte.textBio();
 		Texte.textMat();
 		FiniMat.afficher();

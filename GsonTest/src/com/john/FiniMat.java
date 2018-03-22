@@ -17,7 +17,7 @@ public class FiniMat {
 		
 		for(int i = 0; i < Texte.etud.length; i++) {
 			
-			PrintWriter writer = new PrintWriter("C:\\Users\\John\\Desktop\\TP\\ResultatsMat\\"+Texte.etudm[i].code+".txt", "UTF-16");
+			PrintWriter writer = new PrintWriter("TP\\ResultatsMat\\"+Texte.etudm[i].code+".txt", "UTF-16");
 			
 			
 		//System.out.println("");
