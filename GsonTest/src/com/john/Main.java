@@ -18,7 +18,10 @@ public class Main {
 		Texte.textMat();
 		FiniMat.afficher();
 		FiniBio.afficher();
-		
+		FiniBio.stats();
+		FiniMat.stats();
+		FiniBio.regi();
+		FiniMat.regi();
 		
 	}
 	

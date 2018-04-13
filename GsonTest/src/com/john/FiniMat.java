@@ -1,7 +1,13 @@
 package com.john;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+import com.google.gson.stream.JsonWriter;
+
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
@@ -13,6 +19,10 @@ public class FiniMat {
 	static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d-MM-yyyy HH:mm:ss");
 	static int noteG = 0;
 	static int totalG = 0;
+	static ArrayList<String> code = new ArrayList<>();
+	static ArrayList<Integer> notes = new ArrayList<>();
+
+	
 	public static void afficher() throws FileNotFoundException, UnsupportedEncodingException {
 		
 		for(int i = 0; i < Texte.etud.length; i++) {
@@ -59,10 +69,57 @@ public class FiniMat {
 				}
 			}
 		}
+		code.add(Texte.etud[i].code);
+		notes.add(noteG);
 		writer.close();
 		noteG = 0;
 		totalG = 0;
 	}
 
 }
+public static void stats () throws FileNotFoundException, UnsupportedEncodingException {
+		
+		PrintWriter writer = new PrintWriter("TP\\ResultatsMat\\Statistique.txt", "UTF-16");
+		writer.println("MAT1411 Gr 20");
+		writer.println("Date : " + simpleDateFormat.format(new Date()));
+		writer.println("");
+		writer.println("Évaluation   moyenne    mode    médiane   écart-type   étudiants");
+		writer.println("");
+		while(!FolderReadMat.infMat.isEmpty()) {
+			writer.println(FolderReadMat.infMat.remove(0)); 
+		}
+		
+		writer.close();
+		
+	}
+
+public static void regi () throws FileNotFoundException, UnsupportedEncodingException {
+	
+	JsonWriter writer;
+	
+	try {
+		writer = new JsonWriter(new FileWriter("TP\\ResultatsMat\\Releve.json"));
+		
+		writer.beginObject();
+		writer.name("Cours").value("MAT1411");
+		writer.name("Groupe").value("20");
+		writer.name("\nDonees");
+		writer.beginArray();
+		
+		while(!code.isEmpty()) {
+			writer.beginObject();
+			writer.name("code_permanant").value(code.remove(0));
+			writer.name("note").value(notes.remove(0));
+			writer.endObject();
+		}
+			
+		
+		writer.endArray();
+		writer.endObject();
+		writer.close();
+		
+	} catch (IOException e) {
+		e.printStackTrace();
+	     }
+	}
 }
