@@ -20,6 +20,7 @@ public class FiniBio {
 	static int totalG = 0;
 	static ArrayList<String> code = new ArrayList<>();
 	static ArrayList<Integer> notes = new ArrayList<>();
+	static ArrayList<Couler> coule = new ArrayList<>();
 
 	
 	public static void afficher() throws FileNotFoundException, UnsupportedEncodingException {
@@ -54,6 +55,9 @@ public class FiniBio {
 		}
 		code.add(Texte.etud[i].code);
 		notes.add(noteG);
+		if(noteG < 60) {
+			coule.add(new Couler(Texte.etud[i].code,Texte.etud[i].nom,Texte.etud[i].prenom,noteG));
+		}
 		writer.close();
 		noteG = 0;
 		totalG = 0;
@@ -105,6 +109,17 @@ public static void regi () throws FileNotFoundException, UnsupportedEncodingExce
 		     }
 		}
 	
+public static void suivi () throws FileNotFoundException, UnsupportedEncodingException {
 	
+	PrintWriter writer = new PrintWriter("TP\\ResultatsBio\\suivi.txt", "UTF-16");
+	writer.println("BIO1012 Gr10");
+	writer.println("Date : " + simpleDateFormat.format(new Date()));
+	writer.println("");
+	writer.println("Code permanant   nom    prenom    note   pourcentage");
+	writer.println("");
+	while(!coule.isEmpty()) {
+		writer.println(coule.remove(0));
+	}
 		
 	}
+}

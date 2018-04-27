@@ -22,7 +22,8 @@ public class Main {
 		FiniMat.stats();
 		FiniBio.regi();
 		FiniMat.regi();
-		
+		FiniMat.suivi();
+		FiniBio.suivi();
 	}
 	
 }

@@ -21,7 +21,7 @@ public class FiniMat {
 	static int totalG = 0;
 	static ArrayList<String> code = new ArrayList<>();
 	static ArrayList<Integer> notes = new ArrayList<>();
-
+	static ArrayList<Couler> coule = new ArrayList<>();
 	
 	public static void afficher() throws FileNotFoundException, UnsupportedEncodingException {
 		
@@ -71,6 +71,9 @@ public class FiniMat {
 		}
 		code.add(Texte.etud[i].code);
 		notes.add(noteG);
+		if(noteG < 60) {
+			coule.add(new Couler(Texte.etud[i].code,Texte.etud[i].nom,Texte.etud[i].prenom,noteG));
+		}
 		writer.close();
 		noteG = 0;
 		totalG = 0;
@@ -122,4 +125,20 @@ public static void regi () throws FileNotFoundException, UnsupportedEncodingExce
 		e.printStackTrace();
 	     }
 	}
+
+public static void suivi () throws FileNotFoundException, UnsupportedEncodingException {
+	
+	PrintWriter writer = new PrintWriter("TP\\ResultatsMat\\Suivi.txt", "UTF-16");
+	writer.println("MAT1411 Gr 20");
+	writer.println("Date : " + simpleDateFormat.format(new Date()));
+	writer.println("");
+	writer.println("Code permanant   nom    prenom    note   pourcentage");
+	writer.println("");
+	while(!coule.isEmpty()) {
+		writer.println(coule.remove(0));
+	}
+	
+	writer.close();
+	
+}
 }
